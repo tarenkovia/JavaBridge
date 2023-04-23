@@ -1,18 +1,37 @@
 import java.util.Scanner;
 
 public class Main {
+
+    public static boolean IncorrectName(String name){
+        try {
+            if(name.equals("")){
+                throw new IllegalArgumentException("Нельзя ввести пустое имя!");
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return true;
+        }
+        return false;
+    }
+
+    public static String EnterName(){
+        String name;
+        do {
+            Scanner in = new Scanner(System.in);
+            name = in.nextLine();
+        }while(IncorrectName(name));
+        return name;
+    }
+
     public static void main (String [] args) {
         System.out.println("Уникальная система создания персонажей");
 
         System.out.println("Введите имя первого персонажа: ");
-        Scanner in1 = new Scanner(System.in);
-        String name1 = in1.nextLine();
-        System.out.println("Введите имя первого персонажа: ");
-        Scanner in2 = new Scanner(System.in);
-        String name2 = in2.nextLine();
-        System.out.println("Введите имя первого персонажа: ");
-        Scanner in3 = new Scanner(System.in);
-        String name3 = in3.nextLine();
+        String name1 = EnterName();
+        System.out.println("Введите имя второго персонажа: ");
+        String name2 = EnterName();
+        System.out.println("Введите имя второго персонажа: ");
+        String name3 = EnterName();
         System.out.println();
 
         BodyType body1 = new Ectomorph(new MaleGender(), new YellowSkinColor(), name1);
